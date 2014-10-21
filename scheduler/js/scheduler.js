@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	self.scrollTo(0,0);
+	$('html, body').animate({ scrollTop: 0 }, 'fast');
 	$('.timeSlotOuter').click(function() {
 		if (!$(this).hasClass('unavailable')) {
 			$('.timeSlotOuter').removeClass('selected');
