@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://www.pepboys.com/css/7.7.13/bootstrap.css" type="text/css">
+	<link rel="stylesheet" href="https://www.pepboys.com/css/7.7.13/bootstrap-overrides.css" type="text/css">
+	<link rel="stylesheet" href="https://www.pepboys.com/css/7.7.13/bootstrap-additions.css" type="text/css">
+	<link rel="stylesheet" href="https://www.pepboys.com/css/7.7.13/eserve.css" type="text/css">
+	<link rel="stylesheet" href="https://www.pepboys.com/css/7.7.13/font-awesome.css" type="text/css">
+	<link rel="stylesheet" href="/scheduler/css/scheduler.css" type="text/css">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+	<script type="text/javascript">
+	var $j = window.jQuery;
+	</script>
+	<script type="text/javascript" src="https://www.pepboys.com/js/7.7.13/bootstrap.js"></script>
+	<script type="text/javascript" src="https://www.pepboys.com/js/7.7.13/eServe2.0/dateTimeSelector.js"></script>
+	<script type="text/javascript" src="https://www.pepboys.com/js/7.7.13/radioButtonGroup.js"></script>
+	<script type="text/javascript" src="https://www.pepboys.com/js/7.7.13/eServe2.0/eserveSelection.js"></script>
+	<script type="text/javascript" src="https://www.pepboys.com/js/7.7.13/eServe2.0/eserve2.js"></script>
+	<script type="text/javascript" src="https://www.pepboys.com/js/7.7.13/utilities/fieldValidator.js"></script>
+	<script type="text/javascript" src="https://www.pepboys.com/js/7.7.13/utilities/formValidator.js"></script>
+	<script type="text/javascript" src="/scheduler/js/scheduler.js"></script>
+</head>
+<div class="mainContentBg">
+	        		<div class="eserveTabsBg eserveHeader">
+        				<span class="header">Schedule a Service Appointment</span>
+	      					<div id="liveChatService">
+	        				<div id="lpChatButton1" style="visibility: visible;"><a href="#" id="lpDynamicButtonHref-591" style="cursor: pointer;" title=""><img id="lpDynamicButtonImg-591" name="lpDynamicButtonImg-591" border="0" style="border: 0px none" alt="" src="https://static.pepboys.com/images/livechat/button/topnav/transparent.gif"></a></div>
+	        			</div>
+	        		</div>
+					<div id="mainContent eserveMainContent">
+						<div id="eserveTabsContent">
+<div class="tabbable">
+	<script type="text/javascript">
+	$j(document).ready(function() {
+		$j('.eserveTabs.clickable').click(function() {
+			window.location = $j(this).attr('data-url');
+		});
+	});
+</script>
+<ul class="nav nav-tabs eserveTabsBg">
+	<li>
+				<a href="javascript:void(0);" class="disabled">
+					<div class="eserveTabs clickable" data-url="/scheduler/step1.html">
+						<table>
+							<tbody><tr>
+								<td class="eserveCheck"><img src="https://www.pepboys.com/images/eServe2.0/blue-check.gif"></td>
+								<td>
+									<div class="eserveTabsSub">STEP 1</div>
+									Location, Vehicle &amp; Services
+								</td>
+							</tr>
+						</tbody></table>
+					</div>
+				</a>
+			</li>
+		<li>
+				<a href="javascript:void(0);" class="disabled">
+					<div class="eserveTabs clickable" data-url="/scheduler/step2.html">
+						<table>
+							<tbody><tr>
+								<td class="eserveCheck"><img src="https://www.pepboys.com/images/eServe2.0/blue-check.gif"></td>
+								<td>
+									<div class="eserveTabsSub">STEP 2</div>
+									
+											Date &amp; Time
+										</td>
+							</tr>
+						</tbody></table>
+					</div>
+				</a>
+			</li>
+		<li class="active">
+				<a href="javascript:void(0);">
+					<div class="eserveTabsSel">
+						<div class="eserveTabsSelSub">STEP 3</div>
+						Contact Information
+					</div>
+				</a>
+			</li>
+		</ul><div class="tab-content eserveBorderBg">
+		<div class="tab-pane active eserveTabContent" id="tab3">
+			<script type="text/javascript">
+$j(document).ready(function(){
+	var setupFieldValidator = function($field){
+		var contactFieldValidator = fieldValidator();
+		var fieldId = $field.attr('id');
+		var options = {
+			fieldSelector: '#' + fieldId,
+			errorContainer: contactFieldValidator.options.errorContainer + '[name="' + fieldId + 'Error"]',
+			emptyMessage: $j('.errorMessages #' + fieldId + 'Required').html(),
+			invalidMessage: $j('.errorMessages #' + fieldId + 'Invalid').html()
+		};
+		
+		if(fieldId == 'emailAddress'){
+			options.validationRegEx = new RegExp("^[A-Za-z0-9._%'-]+@[A-Za-z0-9.-]+\\.[a-zA-Z]{2,4}$");
+		} else if(fieldId == 'contactPhoneNumber') {
+			options.validationRegEx = new RegExp("");
+			options.getValue = function() { return $j.trim($j(contactFieldValidator.options.fieldSelector).val()).replace(/\s+/g, ""); };
+		}
+		
+		return contactFieldValidator.init(options);
+	};
+	
+	var $contactFields = $j('#contactInfo input[type="text"][name]');
+	var contactFieldValidators = {};
+	
+	$contactFields.each(function(i,contactField) {
+		$contactField = $j(contactField);
+		contactFieldValidators[$contactField.attr('id')] = setupFieldValidator($contactField);
+	});
+	
+	$contactFields.on('blur', function(){
+		contactFieldValidators[$j(this).attr('id')].validate();
+	});
+	
+	formValidator({
+		formSelector: '#contactInfo',
+		fieldValidators: contactFieldValidators
+	});
+
+    $j("#contactInfo").on('submit', function() {
+        $("#contactFormSubmitButton").prop('disabled', true);
+    });
+});
+</script>
+<div class="datePickerExterior">
+	<div class="datePickerHeader">
+		<h3 class="override-exclude">Contact Information</h3>
+		<p>Confirm or edit the contact information below.</p>
+	</div>
+</div>
+
+<div class="formContainer override-exclude">
+	<div class="row-fluid">
+		<form id="contactInfo" name="appointmentContactInfoForm" class="form-horizontal slim" action="/scheduler/confirmation.html" method="get"><input type="hidden" name="fill" id="fill">
+<input type="hidden" name="dnf" id="dnf" value="ZmwrkHhk"><div class="control-group override-exclude">
+	<label class="control-label" for="firstName"><strong>First
+			Name <span class="red">*</span></strong></label>
+	<div class="controls override-exclude">
+		<input id="firstName" name="firstName" placeholder="First Name" class="span6 override-exclude" type="text" value="" style="cursor: auto; background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHklEQVQ4EaVTO26DQBD1ohQWaS2lg9JybZ+AK7hNwx2oIoVf4UPQ0Lj1FdKktevIpel8AKNUkDcWMxpgSaIEaTVv3sx7uztiTdu2s/98DywOw3Dued4Who/M2aIx5lZV1aEsy0+qiwHELyi+Ytl0PQ69SxAxkWIA4RMRTdNsKE59juMcuZd6xIAFeZ6fGCdJ8kY4y7KAuTRNGd7jyEBXsdOPE3a0QGPsniOnnYMO67LgSQN9T41F2QGrQRRFCwyzoIF2qyBuKKbcOgPXdVeY9rMWgNsjf9ccYesJhk3f5dYT1HX9gR0LLQR30TnjkUEcx2uIuS4RnI+aj6sJR0AM8AaumPaM/rRehyWhXqbFAA9kh3/8/NvHxAYGAsZ/il8IalkCLBfNVAAAAABJRU5ErkJggg==); background-attachment: scroll; background-position: 100% 50%; background-repeat: no-repeat;"><span name="firstNameError" class="eserveError eserveErrorField"></span>
+	</div>
+</div>
+<div class="control-group">
+	<label class="control-label" for="lastName"><strong>Last
+			Name <span class="red">*</span></strong></label>
+	<div class="controls">
+		<input id="lastName" name="lastName" placeholder="Last Name" class="span6 override-exclude" type="text" value=""><span name="lastNameError" class="eserveError eserveErrorField"></span>
+	</div>
+</div>
+<div class="control-group">
+	<label class="control-label" for="emailAddress"><strong>Email
+			Address <span class="red">*</span></strong></label>
+	<div class="controls">
+		<input id="emailAddress" name="emailAddress" placeholder="Enter your email address" class="span6 override-exclude" type="text" value=""><span name="emailAddressError" class="eserveError eserveErrorField"></span>
+	</div>
+</div>
+<div class="control-group">
+	<label class="control-label" for="contactPhoneNumber"><strong>Phone
+			Number <span class="red">*</span></strong></label>
+	<div class="controls">
+		<input id="contactPhoneNumber" name="contactPhoneNumber" placeholder="Enter a phone number" class="span4 override-exclude" type="text" value=""><span name="contactPhoneNumberError" class="eserveError eserveErrorField"></span>
+	</div>
+</div>
+<div class="control-group">
+	<label class="control-label" for="remindByEmail"><strong>Appointment Reminders</strong></label>
+	<div class="controls override-exclude">
+		<label class="checkbox override-exclude"> <input id="remindByEmail1" name="remindByEmail" class="checkbox" type="checkbox" value="true"><input type="hidden" name="_remindByEmail" value="on">&nbsp;Email</label>
+		<label class="checkbox override-exclude"> <input id="remindByText1" name="remindByText" class="checkbox" type="checkbox" value="true"><input type="hidden" name="_remindByText" value="on">&nbsp;Text Message</label> 		
+	</div>	
+</div>
+<div class="control-group">
+	<div class="controls">
+		<small>
+			You can opt out of text appointment reminders at anytime by texting STOP to 32075.</small>
+	</div>
+</div><br>
+			<hr class="hrStep3">
+			<br>
+			<div class="control-group controlGroupForm">
+				<div class="controls serviceAgreement">
+					By clicking "Schedule Appointment" below, you are agreeing to the
+					PepBoys.com <a href="/customer_care/policies/terms/" target="_blank">terms
+						of use</a> and <a href="/privacy_policy/" target="_blank">privacy
+						policy</a>.
+				</div>
+			</div>
+			<br>
+			<div class="control-group controlGroupForm">
+				<div class="controls step3Submit">
+					<button class="btn btn-primary btn-large btn-override-exclude override-exclude" type="submit">Schedule Appointment</button>
+					&nbsp;&nbsp;&nbsp;<a href="/scheduler/step2.html">Previous</a>
+				</div>
+			</div>
+			<div style="display:none">
+				<input id="shouldShowCoupon" name="shouldShowCoupon" class="override-exclude" type="text" value="true"></div>
+		</form></div>
+	<div class="errorMessages skip">
+		<span id="firstNameRequired"><i class="icon-warning-sign"></i>Please provide your first name.</span>
+		<span id="firstNameInvalid"><i class="icon-warning-sign"></i>First Name is invalid.</span>
+		<span id="lastNameRequired"><i class="icon-warning-sign"></i>Please provide your last name.</span>
+		<span id="lastNameInvalid"><i class="icon-warning-sign"></i>Last Name is invalid.</span>
+		<span id="emailAddressRequired"><i class="icon-warning-sign"></i>Please provide your email address.</span>
+		<span id="emailAddressInvalid"><i class="icon-warning-sign"></i>Please provide a valid email address.</span>
+		<span id="contactPhoneNumberRequired"><i class="icon-warning-sign"></i>Please provide your contact phone number.</span>
+		<span id="contactPhoneNumberInvalid"><i class="icon-warning-sign"></i>Please provide a valid contact phone number.</span>
+	</div>
+</div></div>
+	</div>
+</div>
+</div>
+		        	</div>
+	        		<div class="clear">&nbsp;</div>
+        		</div>
+</html>

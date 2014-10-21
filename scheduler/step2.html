@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://www.pepboys.com/css/7.7.13/bootstrap.css" type="text/css">
+	<link rel="stylesheet" href="https://www.pepboys.com/css/7.7.13/bootstrap-overrides.css" type="text/css">
+	<link rel="stylesheet" href="https://www.pepboys.com/css/7.7.13/bootstrap-additions.css" type="text/css">
+	<link rel="stylesheet" href="https://www.pepboys.com/css/7.7.13/eserve.css" type="text/css">
+	<link rel="stylesheet" href="https://www.pepboys.com/css/7.7.13/font-awesome.css" type="text/css">
+	<link rel="stylesheet" href="/scheduler/css/scheduler.css" type="text/css">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+	<script type="text/javascript">
+	var $j = window.jQuery;
+	</script>
+	<script type="text/javascript" src="https://www.pepboys.com/js/7.7.13/bootstrap.js"></script>
+	<script type="text/javascript" src="https://www.pepboys.com/js/7.7.13/eServe2.0/dateTimeSelector.js"></script>
+	<script type="text/javascript" src="https://www.pepboys.com/js/7.7.13/radioButtonGroup.js"></script>
+	<script type="text/javascript" src="https://www.pepboys.com/js/7.7.13/eServe2.0/eserveSelection.js"></script>
+	<script type="text/javascript" src="https://www.pepboys.com/js/7.7.13/eServe2.0/eserve2.js"></script>
+	<script type="text/javascript" src="/scheduler/js/scheduler.js"></script>
+</head>
+<body>
+<div class="mainContentBg">
+	        		<div class="eserveTabsBg eserveHeader">
+        				<span class="header">Schedule a Service Appointment</span>
+	      					<div id="liveChatService">
+	        				<div id="lpChatButton1" style="visibility: visible;"><a href="#" id="lpDynamicButtonHref-622" style="cursor: pointer;" title=""><img id="lpDynamicButtonImg-622" name="lpDynamicButtonImg-622" border="0" style="border: 0px none" alt="" src="https://static.pepboys.com/images/livechat/button/topnav/transparent.gif"></a></div>
+	        			</div>
+	        		</div>
+					<div id="mainContent eserveMainContent">
+						<div id="eserveTabsContent">
+<div class="tabbable">
+	<script type="text/javascript">
+	$j(document).ready(function() {
+		$j('.eserveTabs.clickable').click(function() {
+			window.location = $j(this).attr('data-url');
+		});
+	});
+</script>
+<ul class="nav nav-tabs eserveTabsBg">
+	<li>
+				<a href="javascript:void(0);" class="disabled">
+					<div class="eserveTabs clickable" data-url="/scheduler/step1.html">
+						<table>
+							<tbody><tr>
+								<td class="eserveCheck"><img src="https://www.pepboys.com/images/eServe2.0/blue-check.gif"></td>
+								<td>
+									<div class="eserveTabsSub">STEP 1</div>
+									Location, Vehicle &amp; Services
+								</td>
+							</tr>
+						</tbody></table>
+					</div>
+				</a>
+			</li>
+		<li class="active">
+				<a href="javascript:void(0);">
+					<div class="eserveTabsSel">
+						<div class="eserveTabsSelSub">STEP 2</div>
+						
+								Date &amp; Time
+							</div>
+				</a>
+			</li>
+		<li class="disabled">
+				<a href="javascript:void(0);" class="disabled">
+					<div class="eserveTabs">
+						<div class="eserveTabsSub">STEP 3</div>
+						Contact Information
+					</div>
+				</a>
+			</li>
+		</ul><div class="tab-content eserveBorderBg">
+		<div class="tab-pane active eserveTabContent" id="tab2">
+			<style type="text/css">
+	.datePickerFooter {
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+	.faintYellowPromo {
+		background-color: yellow;
+	}
+	.greenPromo {
+		background-color: #458B00;
+	}
+	.legendMessage {
+		display: inline-block;
+		line-height: 1.5;
+		padding-bottom: 5px;
+		float: left;
+	}
+	.legendMessage div {
+	    display: inline-block;
+	    vertical-align: middle;
+    }
+    .legendKey {
+	    height: 20px;
+	    margin-right: 10px;
+	    width: 20px;
+	    border: 1px solid silver;
+	}
+	.legendReason {
+		width: 140px;
+	}
+	.unavailableColor {
+		background: url("https://www.pepboys.com/images/eServe2.0/unavailableStripe.png") repeat scroll 0% 0% transparent;
+	}
+</style>
+<div class="datePickerExterior">
+	<div class="datePickerHeader">
+		<h3 class="override-exclude">
+			
+					Select a Drop-Off Date &amp; Time
+				</h3>
+	</div>
+	<div id="globalErrors" class="alert alert-error eserveErrorField" style="display:none;"></div>
+	<div class="legend">
+		<div class="legendMessage">
+			<div class="legendKey unavailableColor">
+			</div>
+			<div class="legendReason">
+				Unavailable<br>
+				<a class="otherStoresLink" href="javascript:void(0);">&gt;&nbsp;Check other stores</a>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div id="datePickerAjaxContainer"><style type="text/css">
+	.datePickerUtils {
+		padding-bottom: 5px;
+	}
+	.datePickerUtils .buttonGroup {
+		float: right;
+	}
+	.datePickerUtils .btn {
+		margin: 10px;
+	}
+	.datePickerUtils .previousButton {
+		float: left;
+	}
+	.dayColumn {
+		margin-left: 4px;
+	    margin-right: 4px;
+	    width: 19%;
+		float: left;
+	}
+	.dateHeader {
+		font-weight: bold;
+		background-color: #505050;
+		background-image: -webkit-gradient(linear, left top, left bottom, from(#505050), to(#181818));
+		background-image: -webkit-linear-gradient(top, #505050, #181818);
+		background-image:    -moz-linear-gradient(top, #505050, #181818);
+		background-image:      -o-linear-gradient(top, #505050, #181818);
+		background-image:         linear-gradient(to bottom, #505050, #181818);
+	    color: white;
+	    font-size: 13px;
+	    height: 20px;
+	    padding-bottom: 10px;
+	    padding-top: 5px;
+	    text-align: center;
+	    position:relative;
+	    display: inline-block;
+		line-height: 1;
+	    width: 100%;
+	}
+	.dateHeader div { 
+		display: inline-block;
+    	vertical-align: middle;
+	}
+	.dateHeader div.day {
+		position: relative;
+    	top: 13%;
+	}
+	.dateHeader div.subDate {
+		border-left: 1px solid #505050;
+		padding-right: 10px;
+		padding-left: 7px;
+	}
+	.dateHeader:before {
+	    border-color: transparent;
+	    border-style: solid;
+	    border-width: 0 0 20px 20px;
+	    content: "";
+	    left: 0;
+	    position: absolute;
+	    top: 0;
+	}
+	.dateHeader.faintYellow:before{
+	    border-color: transparent yellow;
+	}
+	.dateHeader.green:before{
+	    border-color: transparent #458B00;
+	}
+	.dateHeader.today {
+		font-size: 17px;
+	}
+	.timeSlotContainer {
+		border-color: transparent;
+		border-image: none;
+	    border-style: solid;
+	    border-width: 8px 2px 2px;
+	}
+	.timeSlotContainer.green {
+		border-color: #458B00;
+	}
+	.timeSlotContainer.faintYellow {
+		border-color: yellow;
+	}
+	.timeSlotOuter {
+		border: 2px solid #E8E8E8;
+		border-left-width:1px;
+		border-right-width:1px;
+		box-shadow: 0 0 5px #F0F0F0;
+	}
+	.timeSlot {
+		color: black;
+		font-weight: bold;
+		cursor: pointer;
+		padding-bottom:11px;
+  	 	padding-top:11px;
+	    text-align: center;
+	    background-color: #FFFFFF;
+		background-image: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#F0F0F0));
+		background-image: -webkit-linear-gradient(top, #FFFFFF, #F0F0F0);
+		background-image:    -moz-linear-gradient(top, #FFFFFF, #F0F0F0);
+		background-image:      -o-linear-gradient(top, #FFFFFF, #F0F0F0);
+		background-image:         linear-gradient(to bottom, #FFFFFF, #F0F0F0);
+	    position: relative;
+	}
+	.timeSlot:hover {
+		background-color: #F0F0F0;
+		background-image: -webkit-gradient(linear, left top, left bottom, from(#F0F0F0), to(#FFFFFF));
+		background-image: -webkit-linear-gradient(top, #F0F0F0, #FFFFFF);
+		background-image:    -moz-linear-gradient(top, #F0F0F0, #FFFFFF);
+		background-image:      -o-linear-gradient(top, #F0F0F0, #FFFFFF);
+		background-image:         linear-gradient(to bottom, #F0F0F0, #FFFFFF);
+	}
+	.timeSlot:hover .selectableTime {
+		color: #233E99;
+	}
+	.timeSlot .time{
+		font-size: 12px;
+	}
+	.timeSlot .message{
+		float: right;
+    	font-size: 9px;
+   		padding-right: 20px;
+	}
+	.selected {
+		border-color: transparent;
+	}
+	.selected .timeData {
+		color: white !important;
+	}
+	.selected .timeSlot {
+		background-color: #233E99 !important;
+    	background-image: none !important;
+	}
+	.timeSlotOuter.unavailable {
+		color: black !important;
+		border-color: transparent;
+	}
+	.timeSlotOuter.unavailable .timeSlot{
+		cursor: default;
+		background: url("https://www.pepboys.com/images/eServe2.0/unavailableStripe.png") repeat scroll 0% 0% transparent;
+	}
+	.timeSlotOuter img {
+		position: absolute;
+    	right: 25px;
+    	display: none;
+	}
+	.timeSlotOuter.selected img {
+		display: inline;
+	}
+	.timeSlotOuter.selected img.conciergeCheck{
+		display: inline;
+		right: 10px;
+	}
+</style>
+
+<div class="datePickerUtils">
+	<div class="buttonGroup">
+		<button type="button" class="previousButton btn btn-override-exclude" disabled="disabled">&lt;&lt; Previous 5 Days</button>
+		<button type="button" class="nextButton btn btn-override-exclude">Next 5 Days &gt;&gt;</button>
+	</div>
+	<div style="clear:both;"></div>
+</div>
+<div class="datePickercontainer">
+	<div class="dayColumn">
+			<div class="dateHeader ">
+				<div class="day">Monday</div>
+				<div class="subDate right">
+					Oct<br>
+					20</div>
+			</div>
+			<div class="timeSlotContainer " data-appointmentday="2014-10-20">
+				<div class="timeSlotOuter unavailable">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="unavailableTime timeData" href="javascript:void(0);" data-appointmenttime="07:00 AM">Early Bird Drop-Off</span>
+										</span>
+						</div>
+					</div>
+				<div class="timeSlotOuter unavailable">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="unavailableTime timeData" href="javascript:void(0);" data-appointmenttime="8:00 AM">8:00 AM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter unavailable">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="unavailableTime timeData" href="javascript:void(0);" data-appointmenttime="9:00 AM">9:00 AM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter unavailable">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="unavailableTime timeData" href="javascript:void(0);" data-appointmenttime="10:00 AM">10:00 AM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter unavailable">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="unavailableTime timeData" href="javascript:void(0);" data-appointmenttime="11:00 AM">11:00 AM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter unavailable">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="unavailableTime timeData" href="javascript:void(0);" data-appointmenttime="12:00 PM">12:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter unavailable">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="unavailableTime timeData" href="javascript:void(0);" data-appointmenttime="1:00 PM">1:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter unavailable">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="unavailableTime timeData" href="javascript:void(0);" data-appointmenttime="2:00 PM">2:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter unavailable">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="unavailableTime timeData" href="javascript:void(0);" data-appointmenttime="3:00 PM">3:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter unavailable">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="unavailableTime timeData" href="javascript:void(0);" data-appointmenttime="4:00 PM">4:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter unavailable">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="unavailableTime timeData" href="javascript:void(0);" data-appointmenttime="5:00 PM">5:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter unavailable">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="unavailableTime timeData" href="javascript:void(0);" data-appointmenttime="6:00 PM">6:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter unavailable">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="unavailableTime timeData" href="javascript:void(0);" data-appointmenttime="7:00 PM">7:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter unavailable">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="unavailableTime timeData" href="javascript:void(0);" data-appointmenttime="8:00 PM">8:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter unavailable">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="unavailableTime timeData" href="javascript:void(0);" data-appointmenttime="9:00 PM">9:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter unavailable">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="unavailableTime timeData" href="javascript:void(0);" data-appointmenttime="10:00 PM">10:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				</div>
+		</div>
+	<div class="dayColumn">
+			<div class="dateHeader">
+				<div class="day">Tuesday</div>
+				<div class="subDate right">
+					Oct<br>
+					21</div>
+			</div>
+			<div class="timeSlotContainer" data-appointmentday="2014-10-21">
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="07:00 AM">Early Bird Drop-Off</span>
+										</span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="8:00 AM">8:00 AM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="9:00 AM">9:00 AM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="10:00 AM">10:00 AM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="11:00 AM">11:00 AM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="12:00 PM">12:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="1:00 PM">1:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="2:00 PM">2:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="3:00 PM">3:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="4:00 PM">4:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="5:00 PM">5:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="6:00 PM">6:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="7:00 PM">7:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter unavailable">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="unavailableTime timeData" href="javascript:void(0);" data-appointmenttime="8:00 PM">8:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter unavailable">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="unavailableTime timeData" href="javascript:void(0);" data-appointmenttime="9:00 PM">9:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter unavailable">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="unavailableTime timeData" href="javascript:void(0);" data-appointmenttime="10:00 PM">10:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				</div>
+		</div>
+	<div class="dayColumn">
+			<div class="dateHeader">
+				<div class="day">Wednesday</div>
+				<div class="subDate right">
+					Oct<br>
+					22</div>
+			</div>
+			<div class="timeSlotContainer" data-appointmentday="2014-10-22">
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="07:00 AM">Early Bird Drop-Off</span>
+										</span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="8:00 AM">8:00 AM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="9:00 AM">9:00 AM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="10:00 AM">10:00 AM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="11:00 AM">11:00 AM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="12:00 PM">12:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="1:00 PM">1:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="2:00 PM">2:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="3:00 PM">3:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="4:00 PM">4:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="5:00 PM">5:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="6:00 PM">6:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="7:00 PM">7:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter unavailable">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="unavailableTime timeData" href="javascript:void(0);" data-appointmenttime="8:00 PM">8:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter unavailable">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="unavailableTime timeData" href="javascript:void(0);" data-appointmenttime="9:00 PM">9:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter unavailable">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="unavailableTime timeData" href="javascript:void(0);" data-appointmenttime="10:00 PM">10:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				</div>
+		</div>
+	<div class="dayColumn">
+			<div class="dateHeader">
+				<div class="day">Thursday</div>
+				<div class="subDate right">
+					Oct<br>
+					23</div>
+			</div>
+			<div class="timeSlotContainer" data-appointmentday="2014-10-23">
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="07:00 AM">Early Bird Drop-Off</span>
+										</span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="8:00 AM">8:00 AM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="9:00 AM">9:00 AM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="10:00 AM">10:00 AM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="11:00 AM">11:00 AM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="12:00 PM">12:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="1:00 PM">1:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="2:00 PM">2:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="3:00 PM">3:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="4:00 PM">4:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="5:00 PM">5:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="6:00 PM">6:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="7:00 PM">7:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter unavailable">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="unavailableTime timeData" href="javascript:void(0);" data-appointmenttime="8:00 PM">8:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter unavailable">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="unavailableTime timeData" href="javascript:void(0);" data-appointmenttime="9:00 PM">9:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter unavailable">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="unavailableTime timeData" href="javascript:void(0);" data-appointmenttime="10:00 PM">10:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				</div>
+		</div>
+	<div class="dayColumn">
+			<div class="dateHeader ">
+				<div class="day">Friday</div>
+				<div class="subDate right">
+					Oct<br>
+					24</div>
+			</div>
+			<div class="timeSlotContainer " data-appointmentday="2014-10-24">
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="07:00 AM">Early Bird Drop-Off</span>
+										</span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="8:00 AM">8:00 AM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="9:00 AM">9:00 AM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="10:00 AM">10:00 AM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="11:00 AM">11:00 AM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="12:00 PM">12:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="1:00 PM">1:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="2:00 PM">2:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="3:00 PM">3:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="4:00 PM">4:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="5:00 PM">5:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="6:00 PM">6:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter ">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="selectableTime timeData" href="javascript:void(0);" data-appointmenttime="7:00 PM">7:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter unavailable">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="unavailableTime timeData" href="javascript:void(0);" data-appointmenttime="8:00 PM">8:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter unavailable">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="unavailableTime timeData" href="javascript:void(0);" data-appointmenttime="9:00 PM">9:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				<div class="timeSlotOuter unavailable">
+						<div class="timeSlot">
+							<span class="time">
+								<span class="unavailableTime timeData" href="javascript:void(0);" data-appointmenttime="10:00 PM">10:00 PM</span>
+										<img src="https://www.pepboys.com/images/eServe2.0/WhiteCheck-CalanderTimeSelect.gif"></span>
+						</div>
+					</div>
+				</div>
+		</div>
+	<div style="clear:both"></div>
+</div>
+	<div style="clear:both"></div>
+</div></div>
+	<hr class="dark">
+	<div class="datePickerControls">
+		<div id="appointmentDateFormErrors" class="alert alert-error eserveErrorField" style="display:none;">
+			<i class="icon-warning-sign"></i>Please select a date and time for your appointment.</div>
+	</div>
+</div><div class="row">
+	<div class="span4">
+		<div class="control-group controlGroupForm">
+			<div class="controls step3Submit">
+				<form style="display: inline;" action="/scheduler/step3.html">
+				<button type="submit" class="saveBtn btn btn-primary btn-large btn-override-exclude override-exclude">Next</button>
+				</form>
+				&nbsp;&nbsp;&nbsp;<a style="vertical-align: middle" href="/scheduler/step1.html">Previous</a>
+			</div>
+		</div>
+	</div>
+	<div class="span5 offset1">
+		Please be aware more involved services take more time to complete. We know your time is valuable so we will make every effort to get you back on the road as quickly as possible.</div>
+</div><form id="appointmentDateForm" action="/eserve/appointment/step2" method="post" style="display:none">
+				<input type="hidden" name="fill" id="fill">
+<input type="hidden" name="dnf" id="dnf" value="rf2bcrnL"><input type="hidden" name="appointmentDate" value="">
+				<input type="hidden" name="appointmentTime" value="">
+				<div>
+					<input id="shouldShowCoupon" name="shouldShowCoupon" class="override-exclude" value="true">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+</div>
+		        	</div>
+	        		<div class="clear">&nbsp;</div>
+        		</div>
+			</body>
+</html>
