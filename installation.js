@@ -22,7 +22,7 @@ $('.serviceInstallation').on('click', function(event) {
 function loadDatePickerInModal(clickedId) {
     $('.wm-widget-overlay-closeBox').ready(function(){
         $('.ui-dialog').after('<input value="Set Date and Checkout" class="shopNow" style="position: absolute; top: 589px; right: 575px; z-index: 999999; background:linear-gradient(to bottom, #f6962a 50%, #f2671e 50%) no-repeat scroll 0 0 #f6962a; border-radius: 5px; color: white; size:15px; font-weight: bold; padding: 10px 24px; border:0;" type="button" id="datepicker" />')
-        $( "#datepicker" ).datepicker();
+        $( "#datepicker" ).datepicker({minDate: '+7'});
         $('#datepicker').on('change', function(event) {
             $(this).attr('value', "Set Date and Checkout");
             sendToCart(productID);
