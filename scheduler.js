@@ -1,4 +1,4 @@
-var host = 'https://rawgit.com/service-scheduler/demo/master';
+var host = 'http://rawgit.com/service-scheduler/demo/master';
 if (window.SS_ENV == 'dev') {
 	host = 'http://localhost:8000';
 }
